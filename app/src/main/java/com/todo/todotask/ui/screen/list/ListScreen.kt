@@ -1,4 +1,4 @@
-package com.todo.android.ui.screen.list
+package com.todo.todotask.ui.screen.list
 
 import android.annotation.SuppressLint
 import androidx.compose.material.FloatingActionButton
@@ -7,7 +7,10 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.todo.todotask.R
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -15,23 +18,27 @@ fun ListScreen(
     navigateToTaskScreen: (Int) -> Unit
 ){
     Scaffold(
+        topBar = {
+                 ListAppBar()
+        },
         content = {},
         floatingActionButton = {
-            ListFab(navigateToTaskScreen = navigateToTaskScreen)
+            ListFab(onFabClicked = navigateToTaskScreen)
         }
     )
 }
 
 @Composable
 fun ListFab(
-    navigateToTaskScreen: (Int) -> Unit
+    onFabClicked: (Int) -> Unit
 ){
     FloatingActionButton(onClick = {
-        navigateToTaskScreen(-1)
+        onFabClicked(-1)
     }) {
         Icon(
             imageVector = Icons.Filled.Add,
-            contentDescription = "Add"
+            contentDescription = stringResource(id = R.string.add),
+            tint = Color.White
         )
     }
 }
